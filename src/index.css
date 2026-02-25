@@ -1,1 +1,27 @@
 @import "tailwindcss";
+
+
+.animated-text {
+  background: linear-gradient(
+    90deg,
+    #22d3ee 0%,
+    #22d3ee 50%,
+    white 50%,
+    white 100%
+  );
+  background-size: 200% auto;
+  background-position: 100% center;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: shine 6s linear infinite;
+}
+
+@keyframes shine {
+  0% {
+    background-position: 100% center;
+  }
+  100% {
+    background-position: 0% center;
+  }
+}

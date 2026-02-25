@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import arafat from "../../assets/images/arafat.jpg"
+import hero_image from "../../assets/images/hero_image.jpg"
 
 const Hero = () => {
   return (
@@ -10,7 +10,9 @@ const Hero = () => {
         <div>
           <h2 className="text-cyan-400 text-2xl font-semibold">HI!</h2>
           <h1 className="text-5xl font-bold mt-2">
-            I'M <span className="text-cyan-400">ARAFAT HOSSEN</span>
+              <span className="animated-text">
+                I'M ARAFAT HOSSEN
+              </span>
           </h1>
           <p className="mt-4 text-gray-400 text-lg">
             Full Stack Web Developer || React Developer || Programmer
@@ -33,9 +35,9 @@ const Hero = () => {
         {/* Right */}
         <div className="flex justify-center">
           <img
-            src={arafat}
+            src={hero_image}
             alt="profile"
-            className="w-80 rounded-2xl shadow-lg shadow-cyan-500/30"
+            className="w-66 rounded-2xl shadow-lg shadow-cyan-500/30"
           />
         </div>
       </div>
