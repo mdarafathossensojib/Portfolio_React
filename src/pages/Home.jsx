@@ -1,3 +1,4 @@
+import About from "../components/home/About";
 import CompetitiveProgramming from "../components/home/CompetitiveProgramming";
 import Contact from "../components/home/Contact";
 import Hero from "../components/home/Hero";
@@ -6,11 +7,12 @@ import Skills from "../components/home/Skills";
 
 const Home = () => {
     return (
-        <div className="bg-black">
+        <div className="min-h-screen bg-background text-foreground">
             <Hero />
-            <CompetitiveProgramming />
-            <Projects />
+            <About />
             <Skills />
+            <Projects />
+            <CompetitiveProgramming />
             <Contact />
         </div>
     );

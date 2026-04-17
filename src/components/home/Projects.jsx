@@ -1,143 +1,166 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { Link } from "react-router";
-import gym_1 from "../../assets/projects-img/gym_1.png";
-import ecom_1 from "../../assets/projects-img/ecom_1.png"
-
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-// import required modules
+import { ExternalLink, Github } from 'lucide-react'
 
 const Projects = () => {
+  const projects = [
+    {
+      title: 'Gym Management System',
+      description: 'A comprehensive system to manage gym members, subscriptions, attendance, and fitness tracking with both frontend and backend components.',
+      image: 'https://res.cloudinary.com/mdarafathossen/image/upload/v1776224693/Screenshot_1_dzhz1g.png',
+      tech: ['Django REST API', 'React', 'Tailwind CSS', 'PostgreSQL'],
+      frontendUrl: 'https://classic-fitness-ui.vercel.app/',
+      backendUrl: 'https://classicfitness-flax.vercel.app/swagger/',
+      frontendRepo: 'https://github.com/mdarafathossensojib/ClassicFitnessUI/',
+      backendRepo: 'https://github.com/mdarafathossensojib/ClassicFitness/',
+    },
+    {
+      title: 'E-commerce Platform',
+      description: 'A complete online shopping system with product management, shopping cart, payment integration, and an admin dashboard for business operations.',
+      image: 'https://res.cloudinary.com/mdarafathossen/image/upload/v1776224675/Screenshot_2_vks6p5.png',
+      tech: ['Django REST API', 'React', 'Tailwind CSS', 'Stripe Integration'],
+      frontendUrl: 'https://ecommerce-front-end-murex.vercel.app/',
+      backendUrl: 'https://ecommerce-web-drab-eight.vercel.app/swagger/',
+      frontendRepo: 'https://github.com/mdarafathossensojib/Ecommerce_FrontEnd',
+      backendRepo: 'https://github.com/mdarafathossensojib/Ecommerce_Web',
+    },
+    {
+      title: 'Event Management System',
+      description: 'A platform for creating, managing, and booking events with user authentication, dynamic features, and a responsive interface.',
+      image: 'https://res.cloudinary.com/mdarafathossen/image/upload/v1776224675/Screenshot_3_dn0lad.png',
+      tech: ['Django MVT', 'JavaScript', 'Tailwind CSS', 'SQLite'],
+      liveUrl: 'https://event-management-project-ah4k.onrender.com',
+      githubUrl: 'https://github.com/mdarafathossensojib/Event_Management_Project',
+    },
+  ]
+
   return (
-    <section className="bg-black text-white py-20">
-      <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center text-cyan-400 mb-12">
-          My Projects
-        </h2>
+    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-3xl sm:text-4xl font-bold mb-12 text-balance">Featured Projects</h2>
 
-        <Swiper
-          modules={[Navigation, Pagination, Autoplay]}
-          navigation
-          pagination={{ clickable: true }}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
-          }}
-          speed={800}
-          loop={true}
-          spaceBetween={30}
-          slidesPerView={1}
-        >
-          {/* Project 1 */}
-          <SwiperSlide>
-            <div className="grid md:grid-cols-2 gap-8 bg-gray-900 p-8 rounded-2xl">
-              <img src={gym_1} alt="gym" className="rounded-xl" />
+        <div className="space-y-8">
+          {projects.map((project, index) => (
+            <div
+              key={index}
+              className="group p-8 rounded-lg bg-secondary/30 border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10"
+            >
+              <div className="grid md:grid-cols-3 gap-8 items-start">
+                <div className="md:col-span-2">
+                  <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-foreground/70 mb-6 leading-relaxed">
+                    {project.description}
+                  </p>
 
-              <div>
-                <Link to='/projects/1' className="text-2xl font-bold text-cyan-400">
-                  GYM Management System
-                </Link>
-                <p className="mt-4 text-gray-400">
-                  A full-featured gym management system with member tracking,
-                  payment system, trainer dashboard and admin control panel.
-                </p>
+                  <div className="mb-6">
+                    <p className="text-sm text-muted-foreground mb-3 font-semibold">Technologies</p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tech.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-3 py-1 text-xs rounded-full bg-primary/10 border border-primary/30 text-foreground"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
 
-                <div className="mt-4 flex gap-2 flex-wrap">
-                  <span className="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded">
-                    Python
-                  </span>
-                  <span className="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded">
-                    Django REST Framework
-                  </span>
-                  <span className="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded">
-                    POSTgreSQL
-                  </span>
-                  <span className="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded">
-                    React
-                  </span>
-                  <span className="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded">
-                    Tailwind CSS
-                  </span>
+                  <div className="flex flex-wrap gap-3 mb-6">
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-4 py-2 rounded-lg bg-primary/20 border border-primary/50 text-foreground hover:bg-primary/30 transition-colors flex items-center gap-2 text-sm font-medium"
+                      >
+                        <ExternalLink size={16} />
+                        Live Demo
+                      </a>
+                    )}
+                    {project.frontendUrl && (
+                      <a
+                        href={project.frontendUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-4 py-2 rounded-lg bg-primary/20 border border-primary/50 text-foreground hover:bg-primary/30 transition-colors flex items-center gap-2 text-sm font-medium"
+                      >
+                        <ExternalLink size={16} />
+                        Frontend
+                      </a>
+                    )}
+                    {project.backendUrl && (
+                      <a
+                        href={project.backendUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-4 py-2 rounded-lg bg-primary/20 border border-primary/50 text-foreground hover:bg-primary/30 transition-colors flex items-center gap-2 text-sm font-medium"
+                      >
+                        <ExternalLink size={16} />
+                        Backend
+                      </a>
+                    )}
+                  </div>
+
+                  <div className="flex flex-wrap gap-3">
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-4 py-2 rounded-lg bg-background border border-border hover:border-primary/50 flex items-center gap-2 transition-colors group"
+                      >
+                        <Github size={16} className="text-primary" />
+                        <span className="font-medium group-hover:text-primary transition-colors">
+                          View GitHub
+                        </span>
+                      </a>
+                    )}
+                    {project.frontendRepo && (
+                      <a
+                        href={project.frontendRepo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-4 py-2 rounded-lg bg-background border border-border hover:border-primary/50 flex items-center gap-2 transition-colors group"
+                      >
+                        <Github size={16} className="text-primary" />
+                        <span className="font-medium group-hover:text-primary transition-colors">
+                          Frontend Repo
+                        </span>
+                      </a>
+                    )}
+                    {project.backendRepo && (
+                      <a
+                        href={project.backendRepo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-4 py-2 rounded-lg bg-background border border-border hover:border-primary/50 flex items-center gap-2 transition-colors group"
+                      >
+                        <Github size={16} className="text-primary" />
+                        <span className="font-medium group-hover:text-primary transition-colors">
+                          Backend Repo
+                        </span>
+                      </a>
+                    )}
+                  </div>
                 </div>
-                <div className="flex gap-6 mt-5">
-                  <a
-                    href='https://classic-fitness-ui.vercel.app'
-                    target="_blank"
-                    className="bg-cyan-500 px-6 py-3 rounded-lg text-black font-semibold hover:bg-cyan-600 transition"
-                  >
-                    Live Website
-                  </a>
 
-                  <a
-                    href='https://github.com/mdarafathossensojib/ClassicFitnessUI'
-                    target="_blank"
-                    className="border border-cyan-500 px-6 py-3 rounded-lg hover:bg-cyan-500 hover:text-black transition"
-                  >
-                    GitHub Code
-                  </a>
+                <div className="relative h-48 md:h-56 rounded-lg overflow-hidden border border-border group-hover:border-primary/50 transition-colors">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
               </div>
             </div>
-          </SwiperSlide>
-
-          {/* Project 2 */}
-          <SwiperSlide>
-            <div className="grid md:grid-cols-2 gap-8 bg-gray-900 p-8 rounded-2xl">
-              <img src={ecom_1} alt="ecommerce" className="rounded-xl" />
-
-              <div>
-                <Link to='/projects/2' className="text-2xl font-bold text-cyan-400">
-                  E-Commerce Website
-                </Link>
-                <p className="mt-4 text-gray-400">
-                  Modern e-commerce platform with product filtering,
-                  authentication, cart system and secure checkout.
-                </p>
-
-                <div className="mt-4 flex gap-2 flex-wrap">
-                  <span className="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded">
-                    Python
-                  </span>
-                  <span className="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded">
-                    Django REST Framework
-                  </span>
-                  <span className="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded">
-                    POSTgreSQL
-                  </span>
-                  <span className="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded">
-                    React
-                  </span>
-                  <span className="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded">
-                    Tailwind CSS
-                  </span>
-                </div>
-                <div className="flex gap-6 mt-5">
-                  <a
-                    href='https://ecommerce-front-end-murex.vercel.app'
-                    target="_blank"
-                    className="bg-cyan-500 px-6 py-3 rounded-lg text-black font-semibold hover:bg-cyan-600 transition"
-                  >
-                    Live Website
-                  </a>
-
-                  <a
-                    href='https://github.com/mdarafathossensojib/Ecommerce_FrontEnd'
-                    target="_blank"
-                    className="border border-cyan-500 px-6 py-3 rounded-lg hover:bg-cyan-500 hover:text-black transition"
-                  >
-                    GitHub Code
-                  </a>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-        </Swiper>
+          ))}
+        </div>
       </div>
     </section>
-  );
+  )
 };
 
 export default Projects;

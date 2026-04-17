@@ -1,68 +1,143 @@
-
+import { useEffect, useState } from 'react'
+import { ExternalLink, Target, Zap, Trophy, Brain, BarChart, Code2, Sparkles } from 'lucide-react'
 
 const CompetitiveProgramming = () => {
+  const [ratings, setRatings] = useState({
+    leetcode: 0,
+    codeforces: 0,
+    codechef: 0,
+  })
+
+  useEffect(() => {
+    const animateNumber = (target, callback, duration = 2000) => {
+      let current = 0
+      const increment = target / (duration / 50)
+      const interval = setInterval(() => {
+        current += increment
+        if (current >= target) {
+          callback(target)
+          clearInterval(interval)
+        } else {
+          callback(Math.floor(current))
+        }
+      }, 50)
+    }
+
+    animateNumber(1845, (val) => setRatings((prev) => ({ ...prev, leetcode: val })))
+    animateNumber(1259, (val) => setRatings((prev) => ({ ...prev, codeforces: val })))
+    animateNumber(1558, (val) => setRatings((prev) => ({ ...prev, codechef: val })))
+  }, [])
+
   const platforms = [
     {
-      name: "Codeforces",
-      rating: 1235,
-      solved: "400+ Problems Solved",
-      color: "text-red-400",
-      href : 'https://codeforces.com/profile/mdarafathossen.py'
+      name: 'LeetCode',
+      url: 'https://leetcode.com/u/mdarafathossen/',
+      rating: ratings.leetcode,
+      maxRating: 1845,
+      icon: <Target className="text-orange-500" size={32} />,
+      description: 'Active problem solver with strong algorithmic foundation',
     },
     {
-      name: "CodeChef",
-      rating: 1558,
-      solved: "200+ Problems Solved",
-      color: "text-yellow-400",
-      href: 'https://www.codechef.com/users/mdarafathossen'
+      name: 'Codeforces',
+      url: 'https://codeforces.com/profile/mdarafathossen.py',
+      rating: ratings.codeforces,
+      maxRating: 1259,
+      icon: <Zap className="text-blue-500" size={32} />,
+      description: 'Competitive programming enthusiast',
     },
     {
-      name: "LeetCode",
-      rating: 1845,
-      solved: "450+ Problems Solved",
-      color: "text-orange-400",
-      href: 'https://leetcode.com/u/mdarafathossen'
+      name: 'CodeChef',
+      url: 'https://www.codechef.com/users/mdarafathossen',
+      rating: ratings.codechef,
+      maxRating: 1558,
+      icon: <Trophy className="text-yellow-500" size={32} />,
+      description: 'Regular participant in online contests',
     },
-  ];
+  ]
 
   return (
-    <section className="bg-gray-950 text-white py-20">
-      <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center text-cyan-400 mb-12">
-          Competitive Programming
-        </h2>
+    <section id="competitive" className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary/20">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-balance">Competitive Programming</h2>
+        <p className="text-lg text-foreground/70 mb-12">
+          I actively participate in competitive programming contests, honing my problem-solving skills and deepening my understanding of data structures and algorithms.
+        </p>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {platforms.map((platform, index) => (
-            <div
-              key={index}
-              className="bg-gray-900 p-8 rounded-2xl border border-gray-800 hover:border-cyan-500 hover:scale-105 transition duration-300"
+        <div className="grid md:grid-cols-3 gap-8 mb-12">
+          {platforms.map((platform) => (
+            <a
+              key={platform.name}
+              href={platform.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group p-8 rounded-2xl bg-background border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10"
             >
-              <h3 className={`text-2xl font-bold ${platform.color}`}>
+              <div className="mb-4 p-3 bg-secondary/50 inline-block rounded-xl group-hover:scale-110 transition-transform">
+                {platform.icon}
+              </div>
+              <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
                 {platform.name}
               </h3>
-              <p className="mt-4 text-gray-400">
-                MAX_RATING:{" "}
-                <span className="text-white font-medium">
-                  {platform.rating}
-                </span>
-              </p>
-              <p className="mt-2 mb-4 text-gray-500">{platform.solved}</p>
+              <p className="text-foreground/70 text-sm mb-6">{platform.description}</p>
 
-              <a href={platform.href} target="_blank" className=" w-full bg-cyan-500 px-4 py-2 rounded-lg text-black font-semibold hover:bg-cyan-600 transition">
-                View Profile
-              </a>
-            </div>
+              <div className="mb-4">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-sm text-muted-foreground font-medium">Rating</span>
+                  <span className="font-bold text-lg text-primary">{platform.rating}</span>
+                </div>
+                <div className="w-full h-2 bg-secondary rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-linear-to-r from-primary to-accent rounded-full transition-all duration-300"
+                    style={{ width: `${(platform.rating / platform.maxRating) * 100}%` }}
+                  />
+                </div>
+                <p className="text-xs text-muted-foreground mt-2 font-medium">Max rating: {platform.maxRating}</p>
+              </div>
+
+              <div className="flex items-center gap-2 text-primary group-hover:gap-3 transition-all">
+                <span className="text-sm font-bold uppercase tracking-wider">Visit Profile</span>
+                <ExternalLink size={16} />
+              </div>
+            </a>
           ))}
         </div>
 
-        {/* Extra Highlight */}
-        <div className="mt-16 text-center">
-          <p className="text-gray-400 max-w-3xl mx-auto">
-            Passionate about solving algorithmic problems, data structures,
-            dynamic programming, and participating in online contests regularly
-            to improve problem-solving and analytical skills.
-          </p>
+        {/* Skills Highlights with Lucide Icons */}
+        <div className="p-8 rounded-2xl bg-linear-to-r from-primary/5 via-accent/5 to-primary/5 border border-primary/20 shadow-inner">
+          <h3 className="text-xl font-bold mb-8 text-foreground flex items-center gap-2">
+            <Sparkles className="text-primary" size={24} />
+            Key Strengths
+          </h3>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="flex gap-4">
+              <div className="mt-1 p-2 bg-primary/10 rounded-lg h-fit text-primary"><Brain size={20}/></div>
+              <div>
+                <p className="font-bold text-foreground">Problem-Solving</p>
+                <p className="text-foreground/70 text-sm">Strong grasp of algorithms, data structures, and optimization techniques.</p>
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <div className="mt-1 p-2 bg-primary/10 rounded-lg h-fit text-primary"><BarChart size={20}/></div>
+              <div>
+                <p className="font-bold text-foreground">Consistent Practice</p>
+                <p className="text-foreground/70 text-sm">Regular participation in contests to stay sharp and improve ranking.</p>
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <div className="mt-1 p-2 bg-primary/10 rounded-lg h-fit text-primary"><Code2 size={20}/></div>
+              <div>
+                <p className="font-bold text-foreground">Algorithmic Thinking</p>
+                <p className="text-foreground/70 text-sm">Ability to analyze complex problems and find efficient solutions.</p>
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <div className="mt-1 p-2 bg-primary/10 rounded-lg h-fit text-primary"><Zap size={20}/></div>
+              <div>
+                <p className="font-bold text-foreground">Code Quality</p>
+                <p className="text-foreground/70 text-sm">Writing clean, maintainable code that solves problems efficiently.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
