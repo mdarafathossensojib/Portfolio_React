@@ -2,15 +2,15 @@ const Skills = () => {
   const skillCategories = [
     {
       title: 'Frontend',
-      skills: ['React', 'Tailwind CSS', 'JavaScript', 'TypeScript', 'HTML/CSS'],
+      skills: ['React', 'Tailwind CSS', 'JavaScript', 'HTML/CSS'],
     },
     {
       title: 'Backend',
-      skills: ['Django', 'Node.js', 'Python', 'REST APIs', 'Express.js'],
+      skills: ['Django', 'Python', 'REST APIs'],
     },
     {
       title: 'Database',
-      skills: ['MongoDB', 'PostgreSQL', 'MySQL', 'Firebase'],
+      skills: ['PostgreSQL', 'MySQL', 'Firebase'],
     },
     {
       title: 'Other',

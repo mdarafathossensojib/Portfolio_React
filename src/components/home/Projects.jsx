@@ -150,7 +150,7 @@ const Projects = () => {
                   <img
                     src={project.image}
                     alt={project.title}
-                    fill
+                    fill="currentColor"
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>

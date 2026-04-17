@@ -19,7 +19,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="#" className="text-xl font-bold bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
-            AH
+            ARAFAT
           </Link>
 
           {/* Desktop Navigation */}
