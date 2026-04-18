@@ -5,20 +5,22 @@ export function Hero() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50)
+    const handleScroll = () => setScrolled(window.scrollY > 70);
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
-    <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section id="home" className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Gradient background */}
       <div className="absolute inset-0 overflow-hidden -z-10">
         <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/4" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/20 rounded-full blur-3xl translate-y-1/2 translate-x-1/4" />
       </div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className={`max-w-6xl mx-auto relative z-10 transition-all duration-500 ease-in-out ${
+          scrolled ? 'opacity-0 scale-95 -translate-y-10 pointer-events-none' : 'opacity-100 scale-100 translate-y-0'
+        }`}>
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <div className="mb-8 inline-block">
