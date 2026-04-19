@@ -5,7 +5,7 @@ export function Hero() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 70);
+    const handleScroll = () => setScrolled(window.scrollY > 90);
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -39,7 +39,7 @@ export function Hero() {
             </p>
 
             <p className="text-lg text-muted-foreground max-w-2xl mb-10 text-balance leading-relaxed">
-              I build scalable web applications and solve complex problems through code. With expertise in React, Django, Node.js, and competitive programming, I create solutions that matter.
+              I build scalable web applications and solve complex problems through code. With expertise in React, Django, and competitive programming, I create solutions that matter.
             </p>
           </div>
 
