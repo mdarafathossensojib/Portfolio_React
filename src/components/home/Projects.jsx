@@ -5,7 +5,7 @@ const Projects = () => {
   const projects = [
     {
       title: 'Gym Management System',
-      description: 'A comprehensive system to manage gym members, subscriptions, attendance, and fitness tracking with both frontend and backend components.',
+      description: 'Built a high-performance system using React and Django to manage complex gym workflows. Integrated Gemini AI for personalized fitness consulting and implemented secure authentication for different user roles. Features include automated subscription billing, real-time attendance logs, and a dynamic fitness tracking dashboard.',
       image: 'https://res.cloudinary.com/mdarafathossen/image/upload/v1776224693/Screenshot_1_dzhz1g.png',
       tech: ['Django REST API', 'React', 'Tailwind CSS', 'PostgreSQL'],
       frontendUrl: 'https://classic-fitness-ui.vercel.app/',

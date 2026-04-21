@@ -11,7 +11,7 @@ export function About() {
             </p>
 
             <p className="text-lg text-foreground/80 leading-relaxed">
-              My journey spans across frontend technologies like React and Tailwind CSS, backend frameworks like Django and Node.js, and databases including MongoDB and PostgreSQL. Beyond web development, I maintain an active interest in competitive programming, which keeps my problem-solving skills sharp.
+              My journey spans across frontend technologies like React and Tailwind CSS, backend frameworks like Django and databases including MySQL and PostgreSQL. Beyond web development, I maintain an active interest in competitive programming, which keeps my problem-solving skills sharp.
             </p>
 
             <p className="text-lg text-foreground/80 leading-relaxed">
