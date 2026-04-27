@@ -1,5 +1,5 @@
-import { Link } from "react-router";
 import { ExternalLink, Github } from 'lucide-react'
+import { motion } from 'framer-motion' // motion import korun
 
 const Projects = () => {
   const projects = [
@@ -33,15 +33,41 @@ const Projects = () => {
     },
   ]
 
+  // Animation variants for each project card
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.2,
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    })
+  };
+
   return (
     <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-12 text-balance">Featured Projects</h2>
+        <motion.h2 
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: false }}
+          className="text-3xl sm:text-4xl font-bold mb-12 text-balance"
+        >
+          Featured Projects
+        </motion.h2>
 
         <div className="space-y-8">
           {projects.map((project, index) => (
-            <div
+            <motion.div
               key={index}
+              custom={index}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.1 }}
               className="group p-8 rounded-lg bg-secondary/30 border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10"
             >
               <div className="grid md:grid-cols-3 gap-8 items-start">
@@ -67,95 +93,62 @@ const Projects = () => {
                     </div>
                   </div>
 
+                  {/* Demo Links */}
                   <div className="flex flex-wrap gap-3 mb-6">
                     {project.liveUrl && (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-4 py-2 rounded-lg bg-primary/20 border border-primary/50 text-foreground hover:bg-primary/30 transition-colors flex items-center gap-2 text-sm font-medium"
-                      >
-                        <ExternalLink size={16} />
-                        Live Demo
+                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg bg-primary/20 border border-primary/50 text-foreground hover:bg-primary/30 transition-colors flex items-center gap-2 text-sm font-medium">
+                        <ExternalLink size={16} /> Live Demo
                       </a>
                     )}
                     {project.frontendUrl && (
-                      <a
-                        href={project.frontendUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-4 py-2 rounded-lg bg-primary/20 border border-primary/50 text-foreground hover:bg-primary/30 transition-colors flex items-center gap-2 text-sm font-medium"
-                      >
-                        <ExternalLink size={16} />
-                        Frontend
+                      <a href={project.frontendUrl} target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg bg-primary/20 border border-primary/50 text-foreground hover:bg-primary/30 transition-colors flex items-center gap-2 text-sm font-medium">
+                        <ExternalLink size={16} /> Frontend
                       </a>
                     )}
                     {project.backendUrl && (
-                      <a
-                        href={project.backendUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-4 py-2 rounded-lg bg-primary/20 border border-primary/50 text-foreground hover:bg-primary/30 transition-colors flex items-center gap-2 text-sm font-medium"
-                      >
-                        <ExternalLink size={16} />
-                        Backend
+                      <a href={project.backendUrl} target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg bg-primary/20 border border-primary/50 text-foreground hover:bg-primary/30 transition-colors flex items-center gap-2 text-sm font-medium">
+                        <ExternalLink size={16} /> Backend
                       </a>
                     )}
                   </div>
 
+                  {/* GitHub Repo Links */}
                   <div className="flex flex-wrap gap-3">
                     {project.githubUrl && (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-4 py-2 rounded-lg bg-background border border-border hover:border-primary/50 flex items-center gap-2 transition-colors group"
-                      >
+                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg bg-background border border-border hover:border-primary/50 flex items-center gap-2 transition-colors group">
                         <Github size={16} className="text-primary" />
-                        <span className="font-medium group-hover:text-primary transition-colors">
-                          View GitHub
-                        </span>
+                        <span className="font-medium group-hover:text-primary transition-colors">View GitHub</span>
                       </a>
                     )}
                     {project.frontendRepo && (
-                      <a
-                        href={project.frontendRepo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-4 py-2 rounded-lg bg-background border border-border hover:border-primary/50 flex items-center gap-2 transition-colors group"
-                      >
+                      <a href={project.frontendRepo} target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg bg-background border border-border hover:border-primary/50 flex items-center gap-2 transition-colors group">
                         <Github size={16} className="text-primary" />
-                        <span className="font-medium group-hover:text-primary transition-colors">
-                          Frontend Repo
-                        </span>
+                        <span className="font-medium group-hover:text-primary transition-colors">Frontend Repo</span>
                       </a>
                     )}
                     {project.backendRepo && (
-                      <a
-                        href={project.backendRepo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-4 py-2 rounded-lg bg-background border border-border hover:border-primary/50 flex items-center gap-2 transition-colors group"
-                      >
+                      <a href={project.backendRepo} target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg bg-background border border-border hover:border-primary/50 flex items-center gap-2 transition-colors group">
                         <Github size={16} className="text-primary" />
-                        <span className="font-medium group-hover:text-primary transition-colors">
-                          Backend Repo
-                        </span>
+                        <span className="font-medium group-hover:text-primary transition-colors">Backend Repo</span>
                       </a>
                     )}
                   </div>
                 </div>
 
-                <div className="relative h-48 md:h-56 rounded-lg overflow-hidden border border-border group-hover:border-primary/50 transition-colors">
+                {/* Project Image Animation */}
+                <motion.div 
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className="relative h-48 md:h-56 rounded-lg overflow-hidden border border-border group-hover:border-primary/50 transition-colors"
+                >
                   <img
                     src={project.image}
                     alt={project.title}
-                    fill="currentColor"
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="object-cover w-full h-full"
                   />
-                </div>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

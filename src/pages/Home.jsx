@@ -7,7 +7,7 @@ import Skills from "../components/home/Skills";
 
 const Home = () => {
     return (
-        <div className="min-h-screen bg-background text-foreground">
+        <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
             <Hero />
             <About />
             <Skills />
