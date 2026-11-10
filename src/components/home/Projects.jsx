@@ -4,6 +4,16 @@ import { motion } from 'framer-motion' // motion import korun
 const Projects = () => {
   const projects = [
     {
+      title: 'Resturent Retail POS System',
+      description: 'Developed a comprehensive retail POS system using React, Next.js and Django, enabling efficient management of restaurant operations. Implemented features such as POS Checkout, inventory tracking, and real-time sales analytics, enhancing overall business efficiency.',
+      image: 'https://res.cloudinary.com/mdarafathossen/image/upload/v1794312819/retail_3_onb9ne.png',
+      tech: ['Next.js', 'Django REST API', 'React', 'Tailwind CSS', 'PostgreSQL'],
+      frontendUrl: 'https://resturent-retail-pos-system-ui-nine.vercel.app/',
+      backendUrl: 'https://resturent-retail-pos-system.vercel.app/swagger/',
+      frontendRepo: 'https://github.com/mdarafathossensojib/Resturent-Retail-pos-system-ui/',
+      backendRepo: 'https://github.com/mdarafathossensojib/Resturent-Retail-pos-system/',
+    },
+    {
       title: 'Gym Management System',
       description: 'Built a high-performance system using React and Django to manage complex gym workflows. Integrated Gemini AI for personalized fitness consulting and implemented secure authentication for different user roles. Features include automated subscription billing, real-time attendance logs, and a dynamic fitness tracking dashboard.',
       image: 'https://res.cloudinary.com/mdarafathossen/image/upload/v1776224693/Screenshot_1_dzhz1g.png',
